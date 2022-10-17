@@ -1,8 +1,11 @@
 import email
 import os
 import asyncio
+from re import S
 import python_weather
 import email
+import time 
+import smtplib, ssl
 
 
 #TODO
@@ -18,7 +21,16 @@ async def get_weather():
 
             for hourly in forcast.hourly:
                 print(f'--> {hourly!r}')
+def send_email():
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    password = 'Boobear@2017'
+    context = ssl.create_default_context()
 
+    with smtplib.SMTP_SSL('smtp.gmail.com', port, context=context) as server:
+        server.login("dettiannan@gmail.com", password)
+        
+    pass
 # if __name__ == "__main__":
 #     if os.name == "nt":
 #         asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
